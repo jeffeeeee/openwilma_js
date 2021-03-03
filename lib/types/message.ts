@@ -10,9 +10,10 @@
  */
 
 export type WilmaMessageLocation = "sent"|"archive"|"inbox"|"drafts"
+export type WilmaRoles = "teacher" | "student" | "staff" | "parent" | "workplace-instructor" | "management" | "general"
 
 interface MessageSender {
-    role: 1 | 2 | 3 | 4 | 5 | 6 | 7,
+    role: WilmaRoles,
     id: string,
     name: string,
     callsign: string
