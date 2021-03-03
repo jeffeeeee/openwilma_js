@@ -54,6 +54,7 @@ fs.watch("./", {recursive: true}, async (event, filename) => {
         }
         return
     }
+    if (filename.startsWith("dist") || filename.startsWith(".git")) return
     console.log("\n\x1b[34m[\x1b[0m" + new Date().toUTCString() + "\x1b[34m]\x1b[0m", "\x1b[0mChanges detected (" + filename + ")\x1b[0m")
     compile()
 })

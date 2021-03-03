@@ -11,14 +11,18 @@ const ses = new op.client()
 // akuli TestiSalasana <server ;)>
 
 ses.login({
-	username: username,
-	password: password,
-	server: server
+    username: username,
+    password: password,
+    server: server
 }, false).then(async account => {
-	console.log("Logged in")
-	console.log(account)
-	let exams = await account.exams.list()
-	console.log(exams)
+    console.log("Logged in")
+    console.log(account)
+    let exams = await account.exams.list()
+    // console.log(exams)
+    let messages = await account.messages.list()
+    // console.log(messages, "messagess")
+    let message = await account.messages.get(1331568)
+    console.log(message)
 }).catch(err => {
-	console.error(err)
+    console.error(err)
 })
