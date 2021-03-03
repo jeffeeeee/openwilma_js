@@ -11,20 +11,20 @@ import {
     WilmaListMessage,
     WilmaMessage,
     MessageReply,
-    WilmaMessageLocation,
-    WilmaRoles
+    WilmaMessageLocation
 } from "../../types/message"
+import { WilmaRole } from "./../../types/account"
 import { toUTF8 } from "../../utils/parser"
 import { WilmaAccount } from "../../types/account"
 
 export default class Messages {
     session: WilmaSession
     categories: WilmaMessageLocation[]
-    roles: WilmaRoles[]
+    roles: WilmaRole[]
     constructor(session: WilmaSession){
         this.session = session
         this.categories = ["inbox", "sent", "drafts", "archive"]
-        this.roles = ["teacher", "student", "staff", "parent", "workplace-instructor", "management", "general" ]
+        this.roles = ["teacher", "student", "staff", "parent", "workplace-instructor", "management", "generic" ]
     }
 
     private toCallsign(data: string): string {
@@ -48,7 +48,7 @@ export default class Messages {
         else return `/${category}`
     }
 
-    private getRole(role: number): WilmaRoles {
+    private getRole(role: number): WilmaRole {
         return this.roles[role - 1]
     }
 
@@ -128,7 +128,7 @@ export default class Messages {
     /**
      * Get message by id
      */
-    async get (messageId: number) { //TODO: (better parser. returns html as a message content) (Search functionality. search by teacher id or callsign timestamp subject etc.)
+    async get (messageId: number): Promise<WilmaMessage> { //TODO: (better parser. returns html as a message content) (Search functionality. search by teacher id or callsign timestamp subject etc.)
         try {
             const message = await apiRequest.get({
                 session: this.session,

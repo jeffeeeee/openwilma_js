@@ -2,18 +2,17 @@
  * Typings for messages
  */
 
-// import { WilmaGroup } from "./group";
-// import { WilmaTeacher } from "./teacher"
+
+import { WilmaRole } from "./account"
 
 /**
  * Wilma message entity
  */
 
 export type WilmaMessageLocation = "sent"|"archive"|"inbox"|"drafts"
-export type WilmaRoles = "teacher" | "student" | "staff" | "parent" | "workplace-instructor" | "management" | "general"
 
 interface MessageSender {
-    role: WilmaRoles,
+    role: WilmaRole,
     id: string,
     name: string,
     callsign: string
