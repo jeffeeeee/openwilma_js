@@ -6,7 +6,6 @@ import {WilmaServer} from "./types/starsoft"
 import warn from "./utils/warn"
 import apiRequest from "./net/apiRequest"
 import { RequestResponse } from "./types/apiRequest"
-
 import ExamManager from "./client/exam/exams"
 import MessageManager from "./client/message/messages"
 /**
@@ -158,7 +157,7 @@ class WilmaAccountInstance {
 	}
 
 	/* Messages */
-	get messages() {
+	get messages(){
 	    return new MessageManager(this.session)
 	}
 }

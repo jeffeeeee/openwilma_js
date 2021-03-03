@@ -31,6 +31,7 @@ const compile = async () => {
                 stderrCache = stderrCache.join("Error:").split("\n")
                 stderrCache.splice(stderrCache.length-1, 1)
                 stderrCache = stderrCache.join("\n").split("\n")
+                if(stderrCache.includes("Error:")) stderrCache = stderrCache.split("Error:")[0]
                 stderrCache[stderrCache.length-1] = "Location: " + stderrCache[stderrCache.length-1]
                 stderrCache = stderrCache.join("\n")
                 console.log(stderrCache)
@@ -54,7 +55,6 @@ fs.watch("./", {recursive: true}, async (event, filename) => {
         }
         return
     }
-    if (filename.startsWith("dist") || filename.startsWith(".git")) return
     console.log("\n\x1b[34m[\x1b[0m" + new Date().toUTCString() + "\x1b[34m]\x1b[0m", "\x1b[0mChanges detected (" + filename + ")\x1b[0m")
     compile()
 })
